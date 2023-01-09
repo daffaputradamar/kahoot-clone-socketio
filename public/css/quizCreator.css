@@ -1,7 +1,5 @@
 #question-field{
-    border-style: groove;
-    border-width: 1px;
-    padding: 10px;
+    border: 2px solid;
     font-family: 'Raleway', sans-serif;
 }
 .question{
@@ -19,4 +17,7 @@
 }
 #quizTitle{
     font-family: 'Raleway', sans-serif;
+}
+body {
+    background-color: #f3f3f3;
 }

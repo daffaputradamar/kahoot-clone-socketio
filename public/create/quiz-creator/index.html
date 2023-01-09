@@ -1,55 +1,86 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Creator | KahootClone</title>
+        <title>Creator | UAS</title>
         <link rel = "stylesheet" href = "../../css/quizCreator.css">
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     </head>
     <body onload = "setBGColor()">
-        <h1 id = "title">Kahoot Quiz Creator Studio</h1>
-        
-        <div class="form-field">
-            <label id = "quizTitle">Quiz Title</label>
-            <input id = "name" type = "text" name="name" autofocus/>
-        </div>
-        <br>
-        <br>
-        <div id = "allQuestions">
-            <div id="question-field">
-                <label>Question 1: </label>
-                <input class = "question" id = "q1" type = "text" autofocus/>
-                <br>
-                <br>
-                <label>Answer 1: </label>
-                <input id = "1a1" type = "text" autofocus/>
-                <label>Answer 2: </label>
-                <input id = "1a2" type = "text" autofocus/>
-                <br>
-                <br>
-                <label>Answer 3: </label>
-                <input id = "1a3"  type = "text"autofocus/>
-                <label>Answer 4: </label>
-                <input id = "1a4"  type = "text" autofocus/>
-                <br>
-                <br>
-                <label>Correct Answer (1-4) :</label>
-                <input class = "correct" id = "correct1"  type = "number" autofocus/>
+        <div class="container my-5">
+            <h1 id = "title" class="mb-5 fw-bold">UAS Creator</h1>
+            
+            <div class="form-field row">
+                <label class="col-sm-2 col-form-label fw-bold" id = "quizTitle">Judul Paket UAS</label>
+                <div class="col">
+                    <input id = "name" type = "text" name="name" autofocus class="form-control"/>
+                </div>
             </div>
+            <br>
+            <br>
+            <div id = "allQuestions">
+                <div id="question-field" class="py-4 px-5 rounded mb-3">
+                    <div class="form-group">
+                        <label class="form-sm-2 col-form-label fw-bold">Pertanyaan 1: </label>
+                        <div class="col">
+                            <input class = "question form-control" id = "q1" type = "text" autofocus/>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-3 col-form-label">Jawaban 1: </label>
+                                <div class="col">
+                                    <input id = "1a1" type = "text" autofocus class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-3 col-form-label">Jawaban 2: </label>
+                                <div class="col">
+                                    <input id = "1a2" type = "text" autofocus class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-3 col-form-label">Jawaban 3: </label>
+                                <div class="col">
+                                    <input id = "1a3"  type = "text"autofocus class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row mb-3">
+                                <label class="col-sm-3 col-form-label">Jawaban 4: </label>
+                                <div class="col">
+                                    <input id = "1a4"  type = "text" autofocus class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Kunci Jawaban (1-4) :</label>
+                        <div class="col-1">
+                            <input class = "correct form-control" id = "correct1"  type = "number" min="1" max="4" autofocus/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-primary d-flex align-items-center justify-content-between" onclick = "addQuestion()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                  </svg> <span class="ms-2">Tambah Pertanyaan</span></button>
+            </div>
+
+            <div class="d-flex flex-column align-items-center">
+                <button onclick = "updateDatabase()" class="btn btn-lg btn-success mb-4 w-50">Simpan Paket UAS</button>
+                <button onclick = 'cancelQuiz()' class="btn btn-outline-secondary w-50">Batal dan Kembali</button>
+            </div>
+                        
         </div>
-        <br>
-        <button onclick = "addQuestion()">Add another question</button>
         
-        <br>
-        <br>
-        
-        <div class="form-field">
-            <button onclick = "updateDatabase()">Create Quiz</button>
-        </div>
-        
-        <br>
-        
-        <button onclick = 'cancelQuiz()'>Cancel quiz and return to quiz selection</button>
-        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <script src = "../../socket.io/socket.io.js"></script>
         <script src = "../../js/quizCreator.js"></script>
     </body>

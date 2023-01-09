@@ -4,7 +4,7 @@ var params = jQuery.deparam(window.location.search);
 //When host connects to server
 socket.on('connect', function() {
 
-    document.getElementById('players').value = "";
+    document.getElementById('players').innerHTML = "";
     
     //Tell server that it is host connection
     socket.emit('host-join', params);
@@ -16,11 +16,15 @@ socket.on('showGamePin', function(data){
 
 //Adds player's name to screen and updates player count
 socket.on('updatePlayerLobby', function(data){
-    
-    document.getElementById('players').value = "";
-    
+    console.log(data);
+    document.getElementById('players').innerHTML = "";
+
     for(var i = 0; i < data.length; i++){
-        document.getElementById('players').value += data[i].name + "\n";
+        document.getElementById('players').innerHTML += `
+            <div class="col-3 m-2 text-center" id="gameButton">
+                ${data[i].name}
+            </div>
+        `;
     }
     
 });

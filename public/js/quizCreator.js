@@ -23,79 +23,59 @@ function addQuestion(){
     questionNum += 1;
     
     var questionsDiv = document.getElementById('allQuestions');
-    
-    var newQuestionDiv = document.createElement("div");
-    
-    var questionLabel = document.createElement('label');
-    var questionField = document.createElement('input');
-    
-    var answer1Label = document.createElement('label');
-    var answer1Field = document.createElement('input');
-    
-    var answer2Label = document.createElement('label');
-    var answer2Field = document.createElement('input');
-    
-    var answer3Label = document.createElement('label');
-    var answer3Field = document.createElement('input');
-    
-    var answer4Label = document.createElement('label');
-    var answer4Field = document.createElement('input');
-    
-    var correctLabel = document.createElement('label');
-    var correctField = document.createElement('input');
-    
-    questionLabel.innerHTML = "Question " + String(questionNum) + ": ";
-    questionField.setAttribute('class', 'question');
-    questionField.setAttribute('id', 'q' + String(questionNum));
-    questionField.setAttribute('type', 'text');
-    
-    answer1Label.innerHTML = "Answer 1: ";
-    answer2Label.innerHTML = " Answer 2: ";
-    answer3Label.innerHTML = "Answer 3: ";
-    answer4Label.innerHTML = " Answer 4: ";
-    correctLabel.innerHTML = "Correct Answer (1-4): ";
-    
-    answer1Field.setAttribute('id', String(questionNum) + "a1");
-    answer1Field.setAttribute('type', 'text');
-    answer2Field.setAttribute('id', String(questionNum) + "a2");
-    answer2Field.setAttribute('type', 'text');
-    answer3Field.setAttribute('id', String(questionNum) + "a3");
-    answer3Field.setAttribute('type', 'text');
-    answer4Field.setAttribute('id', String(questionNum) + "a4");
-    answer4Field.setAttribute('type', 'text');
-    correctField.setAttribute('id', 'correct' + String(questionNum));
-    correctField.setAttribute('type', 'number');
-    
-    newQuestionDiv.setAttribute('id', 'question-field');//Sets class of div
-    
-    newQuestionDiv.appendChild(questionLabel);
-    newQuestionDiv.appendChild(questionField);
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(answer1Label);
-    newQuestionDiv.appendChild(answer1Field);
-    newQuestionDiv.appendChild(answer2Label);
-    newQuestionDiv.appendChild(answer2Field);
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(answer3Label);
-    newQuestionDiv.appendChild(answer3Field);
-    newQuestionDiv.appendChild(answer4Label);
-    newQuestionDiv.appendChild(answer4Field);
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(document.createElement('br'));
-    newQuestionDiv.appendChild(correctLabel);
-    newQuestionDiv.appendChild(correctField);
-    
-    questionsDiv.appendChild(document.createElement('br'));//Creates a break between each question
-    questionsDiv.appendChild(newQuestionDiv);//Adds the question div to the screen
-    
-    newQuestionDiv.style.backgroundColor = randomColor();
+    var randColor = randomColor();
+    questionsDiv.insertAdjacentHTML('beforeend',`
+    <div id="question-field" class="py-4 px-5 rounded mb-3" style="border-color:${randColor}; background-color:${randColor}26;">
+        <div class="form-group">
+            <label class="form-sm-2 col-form-label fw-bold">Pertanyaan ${String(questionNum)}: </label>
+            <div class="col">
+                <input class = "question form-control" id = "q${String(questionNum)}" type = "text" autofocus/>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Jawaban 1: </label>
+                    <div class="col">
+                        <input id = "${String(questionNum)}a1" type = "text" autofocus class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Jawaban 2: </label>
+                    <div class="col">
+                        <input id = "${String(questionNum)}a2" type = "text" autofocus class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Jawaban 3: </label>
+                    <div class="col">
+                        <input id = "${String(questionNum)}a3"  type = "text"autofocus class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label class="col-sm-3 col-form-label">Jawaban 4: </label>
+                    <div class="col">
+                        <input id = "${String(questionNum)}a4"  type = "text" autofocus class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Kunci Jawaban (1-4) :</label>
+            <div class="col-1">
+                <input class = "correct form-control" id = "correct${String(questionNum)}"  type = "number" min="1" max="4" autofocus/>
+            </div>
+        </div>
+    </div>
+    `)
 }
 
 //Called when user wants to exit quiz creator
 function cancelQuiz(){
-    if (confirm("Are you sure you want to exit? All work will be DELETED!")) {
+    if (confirm("Apakah kamu yakin ingin kembali, semua progress yang dibuat tidak akan tersimpan")) {
         window.location.href = "../";
     }
 }
@@ -113,7 +93,9 @@ function randomColor(){
 
 function setBGColor(){
     var randColor = randomColor();
-    document.getElementById('question-field').style.backgroundColor = randColor;
+    document.getElementById('question-field').style.borderColor = randColor;
+    document.getElementById('question-field').style.backgroundColor = randColor + '26';
+
 }
 
 
